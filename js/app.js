@@ -5,51 +5,86 @@ var touchEndY = 0;
 
 var bg = document.querySelector('.fullpage');
 
+const fadeOut = el => {
+        el.style.opacity = 1;
+
+        (function fade() {
+                if ((el.style.opacity -= .1) < 0) {
+                        el.style.display = "none";
+                } else {
+                        requestAnimationFrame(fade);
+                }
+        })();
+};
+
+const fadeIn = (el, display) => {
+        el.style.opacity = 0;
+        el.style.display = display || "block";
+
+        (function fade() {
+                var val = parseFloat(el.style.opacity);
+                if (!((val += .1) > 1)) {
+                        el.style.opacity = val;
+                        requestAnimationFrame(fade);
+                }
+        })();
+};
+
 let slideData = {
         0: {
                 bg_class: "gray",
                 slideName: '',
                 headColor: 'white',
-                className: 'mainSlide'
+                className: '.mainSlide'
         },
         1: {
                 bg_class: 'lightGray',
                 slideName: 'Портфолио',
                 headColor: 'black',
-                className: 'portfolio'
+                className: '.portfolio'
         },
         2: {
                 bg_class: 'gray',
                 slideName: 'Услуги',
                 headColor: 'white',
-                className: 'services'
+                className: '.services'
         },
         3: {
                 bg_class: 'lightGray',
                 slideName: 'О студии',
                 headColor: 'black',
-                className: 'aboutUs'
+                className: '.aboutUs'
         },
         4: {
                 bg_class: "gray",
                 slideName: 'Блог',
                 headColor: 'white',
-                className: 'blog'
+                className: '.blog'
         }
-}
+};
 
 const bgClass = (bgId, current) => {
 
         let {
                 bg_class,
                 slideName,
-                headColor
+                headColor,
+                className
         } = slideData[bgId];
-        document.querySelector('header').style.color = headColor
+        let curSlide = document.querySelector(slideData[current].className)
+        let nextSldie = document.querySelector(className);
+        fadeOut(curSlide)
+        setTimeout(() => {
+
+                fadeIn(nextSldie)
+
+        }, 500);
+
+        document.querySelector('header').style.color = headColor;
         document.querySelector('.slideName').innerHTML = slideName;
 
         document.querySelector('.slide_' + current).classList.remove('active_slide');
-        document.querySelector('.slide_' + bgId).classList.add('active_slide')
+        document.querySelector('.slide_' + bgId).classList.add('active_slide');
 
         bg.classList.remove(bg.classList[1]);
         bg.classList.add(bg_class);
@@ -67,18 +102,18 @@ window.addEventListener('touchend', (e) => {
 })
 
 const handleGesure = () => {
-        let bgId = parseInt(bg.id)
+        let bgId = parseInt(bg.id);
         if (touchEndY < touchStartX) {
                 if (bgId < 4) {
                         let nextBg = bgId + 1;
-                        bgClass(nextBg, bgId)
+                        bgClass(nextBg, bgId);
                         bg.id = nextBg;
                 }
         }
         if (touchEndY > touchStartX) {
                 if (bgId > 0) {
                         let nextBg = bgId - 1;
-                        bgClass(nextBg, bgId)
+                        bgClass(nextBg, bgId);
                         bg.id = nextBg;
                 }
         }
@@ -104,13 +139,13 @@ document.querySelector('.fullpage').addEventListener("wheel", event => {
         if (delta == 1) {
                 if (bgId < 4) {
                         let nextBg = bgId + 1;
-                        bgClass(nextBg, bgId)
+                        bgClass(nextBg, bgId);
                         bg.id = nextBg;
                 }
         } else {
                 if (bgId > 0) {
                         let nextBg = bgId - 1;
-                        bgClass(nextBg, bgId)
+                        bgClass(nextBg, bgId);
                         bg.id = nextBg;
                 }
         }

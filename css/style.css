@@ -94,6 +94,14 @@ header hr {
   color: #E2F27D;
 }
 
+.visually-hidden {
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+}
+
 .mainSlide h2 {
   color: #FFFFFF;
   font-size: 75px;
@@ -101,7 +109,7 @@ header hr {
 
 .fadeOut {
   animation-name: fadeOut;
-  animation-duration: 1s;
+  animation-duration: .5s;
 }
 
 @keyframes fadeOut {
@@ -109,6 +117,22 @@ header hr {
     opacity: 0;
     display: none;
   }
+}
+
+.fadeIn {
+  animation-name: fadeIn;
+  animation-duration: .5s;
+}
+
+@keyframes fadeIn {
+  100% {
+    opacity: 1;
+    display: none;
+  }
+}
+
+.none {
+  display: none;
 }
 
 .portfolio {
