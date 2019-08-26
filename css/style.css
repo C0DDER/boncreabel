@@ -1,0 +1,165 @@
+@import url('https://fonts.googleapis.com/css?family=Exo+2&display=swap');
+
+body {
+  margin: 0;
+}
+
+h1,
+h2,
+p,
+span,
+ul {
+  font-family: 'Exo 2', sans-serif;
+}
+
+.gray {
+  background-color: #2b2b2b;
+}
+
+.lightGray {
+  background-color: #6F787A;
+}
+
+.mountains {
+  background-image: url(../img/MountCookChangingOfTheGuard.jpg);
+}
+
+main {
+  position: absolute;
+}
+
+.fullpage {
+  display: flex;
+  height: 100vh;
+  width: 100vw;
+  align-items: center;
+  transition: background 1000ms linear;
+}
+
+header {
+  position: absolute;
+  display: flex;
+  justify-content: space-around;
+  align-items: baseline;
+  z-index: 1;
+  width: 100%;
+  height: 108px;
+  transition: color 1000ms linear;
+  color: white;
+}
+
+header hr {
+  margin: 0;
+  max-width: 990px;
+  height: 2px;
+}
+
+.slides_counter {
+  display: flex;
+  align-items: center;
+}
+
+.slides_counter ul {
+  line-height: 43px;
+  list-style: none;
+  width: 50px;
+  padding: 0 100px 0 74px;
+  font-size: 24px;
+  color: rgba(255, 255, 255, 0.2);
+}
+
+.slideName {
+  width: 150px;
+}
+
+.slides_counter li {
+  transition: font-size 0.6s ease;
+}
+
+.active_slide {
+  font-size: 36px;
+  color: white;
+}
+
+.mainSlide {
+  font-family: 'Exo2', sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-content: space-around;
+}
+
+.mainSlide p {
+  font-size: 18px;
+  color: #E2F27D;
+}
+
+.mainSlide h2 {
+  color: #FFFFFF;
+  font-size: 75px;
+}
+
+.fadeOut {
+  animation-name: fadeOut;
+  animation-duration: 1s;
+}
+
+@keyframes fadeOut {
+  100% {
+    opacity: 0;
+    display: none;
+  }
+}
+
+.portfolio {
+  max-width: 100%;
+  overflow-x: auto;
+  height: 500px;
+}
+
+.portfolioWrapper {
+  display: flex;
+  overflow-x: auto;
+  height: 500px;
+  max-width: 100%;
+}
+
+.portfolioBox {
+  min-width: 600px;
+  margin: 0 20px;
+  max-height: calc(100% - 145px);
+  margin-bottom: 40px;
+  font-size: 35px;
+  color: white;
+  padding: 92px 10px 10px 40px;
+  background-image: url('../img/4c8f7eddcd05c8762cd544eb82cb71f517d954c7bf6e7b985d76cf76db604e7e.png');
+  background-size: cover;
+}
+
+.portfolioWrapper {
+  cursor: pointer;
+}
+
+.portfolioWrapper .active {
+  cursor: grabbing;
+}
+
+.portfolioBox h2 {
+  margin-top: 0;
+}
+
+.portfolioWrapper:-webkit-scrollbar-track
+{
+  height: 2px;
+  background-color: #F5F5F5;
+}
+.portfolioWrapper::-webkit-scrollbar
+{
+	width: 6px;
+  background-color: #F5F5F5;
+}
+.portfolioWrapper::-webkit-scrollbar-thumb
+{
+  height: 2px;
+	background-color: #000000;
+}
