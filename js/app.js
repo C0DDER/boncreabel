@@ -3,7 +3,9 @@ var touchStartX = 0;
 var touchEndX = 0;
 var touchEndY = 0;
 
-var bg = document.querySelector('.fullpage');
+const bg = document.querySelector('.fullpage');
+const portfolio = document.querySelector('.portfolioWrapper');
+const blog = document.querySelector('.blogWrapper')
 
 const fadeOut = el => {
         el.style.opacity = 1;
@@ -80,7 +82,7 @@ const bgClass = (bgId, current) => {
         }, 500);
 
         setTimeout(() => {
-                isAnimating = false; 
+                isAnimating = false;
         }, 1000);
 
         document.querySelector('header').style.color = headColor;
@@ -158,12 +160,27 @@ document.querySelector('.fullpage').addEventListener("wheel", event => {
 
 });
 
-{
-        const slider = document.querySelector('.portfolioWrapper');
+let aboutUs = document.querySelectorAll('.headings li');
+aboutUs.forEach(el => {
+        el.addEventListener('click', () => {
+                console.log(el.classList[0])
+                let active = document.querySelector("#" + document.querySelector('.active_description').id)
+                let next = document.querySelector("#" + el.classList[0])
+                active.classList.remove('active_description')
+                next.classList.add('active_description')
+                console.log(active.id)
+                fadeOut(active)
+                active.style.display = "none";
+                setTimeout(() => {
+                        fadeIn(next)
+                }, 500);
+        })
+})
+
+const slideChanger = slider => {
         let isDown = false;
         let startX;
         let scrollLeft;
-
         slider.addEventListener('mousedown', (e) => {
                 isDown = true;
                 slider.classList.add('active');
@@ -186,3 +203,6 @@ document.querySelector('.fullpage').addEventListener("wheel", event => {
                 slider.scrollLeft = scrollLeft - walk;
         });
 }
+
+slideChanger(portfolio);
+slideChanger(blog)

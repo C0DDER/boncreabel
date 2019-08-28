@@ -100,6 +100,7 @@ header hr {
   width: 1px;
   height: 1px;
   margin: -1px;
+  overflow: hidden;
 }
 
 .mainSlide h2 {
@@ -148,7 +149,7 @@ header hr {
   max-width: 100%;
 }
 
-.portfolioBox {
+.itemBox {
   min-width: 600px;
   margin: 0 20px;
   max-height: calc(100% - 145px);
@@ -168,7 +169,11 @@ header hr {
   cursor: grabbing;
 }
 
-.portfolioBox h2 {
+.active_heading {
+  color: #E2F27D;
+}
+
+.itemBox h2 {
   margin-top: 0;
 }
 
@@ -186,4 +191,79 @@ header hr {
 {
   height: 2px;
 	background-color: #000000;
+}
+
+.servicesWrapper  {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-content: space-around;
+  max-width: 1070px;
+  height: 500px;
+}
+
+.service {
+  border: 2px solid #fff;
+  border-left: none;
+  width: 400px;
+  height: 196px;
+  display: flex;
+  align-items: center;
+}
+
+.service p {
+  margin-left: -25px;
+  font-size: 36px;
+  color: #E2F27D;
+}
+.service span {
+  font-size: 24px;
+  color: #fff;
+}
+
+.headings ul {
+  list-style: none;
+  color: white;
+  font-size: 44px;
+  width: 500px;
+}
+
+.headings li {
+  transition: color .5s ease-out;
+}
+
+.headings li:hover {
+  color: #E2F27D;
+  cursor: pointer;
+}
+
+.aboutUsWrapper {
+  display: flex;
+}
+
+.description {
+  font-size: 30px;
+  padding-right: 20px;
+}
+
+.description p {
+  color: #fff;
+  font-style: italic;
+}
+
+.description h2 {
+  color: #E2F27D;
+}
+
+.blog {
+  max-width: 100%;
+  overflow-x: auto;
+  height: 500px;
+}
+
+.blogWrapper {
+  display: flex;
+  overflow-x: auto;
+  height: 500px;
+  max-width: 100%;
 }
