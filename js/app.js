@@ -65,6 +65,7 @@ let slideData = {
 
 const bgClass = (bgId, current) => {
 
+        isAnimating = true;
         let {
                 bg_class,
                 slideName,
@@ -75,10 +76,12 @@ const bgClass = (bgId, current) => {
         let nextSldie = document.querySelector(className);
         fadeOut(curSlide)
         setTimeout(() => {
-
                 fadeIn(nextSldie)
-
         }, 500);
+
+        setTimeout(() => {
+                isAnimating = false; 
+        }, 1000);
 
         document.querySelector('header').style.color = headColor;
         document.querySelector('.slideName').innerHTML = slideName;
@@ -89,6 +92,8 @@ const bgClass = (bgId, current) => {
         bg.classList.remove(bg.classList[1]);
         bg.classList.add(bg_class);
 }
+
+let isAnimating = false;
 
 window.addEventListener('touchstart', function (e) {
         touchStartX = e.changedTouches[0].screenX;
@@ -132,10 +137,11 @@ document.querySelector('.portfolioWrapper').addEventListener("wheel", event => {
 //         portfolioWrapper.mouseIsOver = false;
 // };
 
+
 document.querySelector('.fullpage').addEventListener("wheel", event => {
         const delta = Math.sign(event.deltaY);
         let bgId = parseInt(bg.id);
-
+        if (isAnimating) return;
         if (delta == 1) {
                 if (bgId < 4) {
                         let nextBg = bgId + 1;
