@@ -62,6 +62,12 @@ let slideData = {
                 slideName: 'Блог',
                 headColor: 'white',
                 className: '.blog'
+        },
+        5 : {
+                bg_class : 'lightGray',
+                slideName : 'Контакты',
+                headColor : 'black',
+                className : '.contacts'
         }
 };
 
@@ -83,7 +89,7 @@ const bgClass = (bgId, current) => {
 
         setTimeout(() => {
                 isAnimating = false;
-        }, 1000);
+        }, 1300);
 
         document.querySelector('header').style.color = headColor;
         document.querySelector('.slideName').innerHTML = slideName;
@@ -111,7 +117,7 @@ window.addEventListener('touchend', (e) => {
 const handleGesure = () => {
         let bgId = parseInt(bg.id);
         if (touchEndY < touchStartX) {
-                if (bgId < 4) {
+                if (bgId < 5) {
                         let nextBg = bgId + 1;
                         bgClass(nextBg, bgId);
                         bg.id = nextBg;
@@ -126,10 +132,6 @@ const handleGesure = () => {
         }
 }
 
-document.querySelector('.portfolioWrapper').addEventListener("wheel", event => {
-
-})
-
 // let portfolioWrapper = document.querySelector(".portfolioWrapper");
 // portfolioWrapper.mouseIsOver = false;
 // portfolioWrapper.onmouseover = () => {
@@ -143,7 +145,7 @@ document.querySelector('.fullpage').addEventListener("wheel", event => {
         let bgId = parseInt(bg.id);
         if (isAnimating) return;
         if (delta == 1) {
-                if (bgId < 4) {
+                if (bgId < 5) {
                         let nextBg = bgId + 1;
                         bgClass(nextBg, bgId);
                         bg.id = nextBg;

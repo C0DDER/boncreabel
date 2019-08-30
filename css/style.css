@@ -272,3 +272,23 @@ canvas {
   position: absolute;
   pointer-events : none;
 }
+
+.telegramWrapper, .emailWrapper {
+  display: flex;
+}
+
+.copyright {
+  font-size: 18px;
+  color: white;
+  max-width: 417px;
+}
+.copyright span {
+  color: #E2F27D;
+}
+
+.contactLinksWrapper h2 {
+  font-size: 70px;
+  font-family: 'Exo2', sans-serif;
+  color: #FFFFFF;
+  max-width: 750px;
+}
