@@ -79,7 +79,7 @@ const bgClass = (bgId, current) => {
         fadeOut(curSlide)
         setTimeout(() => {
                 fadeIn(nextSldie)
-        }, 500);
+        }, 1000);
 
         setTimeout(() => {
                 isAnimating = false;
@@ -138,10 +138,6 @@ document.querySelector('.portfolioWrapper').addEventListener("wheel", event => {
 // portfolioWrapper.onmouseout = () =>  {
 //         portfolioWrapper.mouseIsOver = false;
 // };
-const jellyClick = document.querySelector('canvas').addEventListener('click', () => {
-        requestAnimationFrame(animate);  
-})
-
 document.querySelector('.fullpage').addEventListener("wheel", event => {
         const delta = Math.sign(event.deltaY);
         let bgId = parseInt(bg.id);
@@ -163,6 +159,7 @@ document.querySelector('.fullpage').addEventListener("wheel", event => {
 });
 
 let aboutUs = document.querySelectorAll('.headings li');
+
 aboutUs.forEach(el => {
         el.addEventListener('click', () => {
                 console.log(el.classList[0])
@@ -208,56 +205,3 @@ const slideChanger = slider => {
 
 slideChanger(portfolio);
 slideChanger(blog)
-
-
-var jelly=document.getElementById("jelly");
-var ctx=jelly.getContext("2d");
-var cw=jelly.width;
-var ch=jelly.height;
-
-var duration=0.5;
-
-// starting and ending colors
-var rgbStart='#6F787A';
-var rgbEnd='#2b2b2b';
-// calculate the # of frames that requestAnimationFrame can
-// draw during the duration
-var opacitySteps=parseInt(60*duration);
-// set the current opacity step at its starting number (0)
-var opacityStep=0;
-
-// start the 2.5 second animation
-requestAnimationFrame(animate);
-
-
-function animate(time){
-
-  // calculate the current opacity as a percentage
-  //     of opacityStep/opacitySteps
-  var opacity=100*(opacityStep/opacitySteps);
-  if(opacityStep>=opacitySteps-1){ opacity=100; }
-
-  // clear the canvas
-  ctx.clearRect(0,0,cw,ch);
-
-  // draw with the starting color using a lessening opacity
-  ctx.globalAlpha=(100-opacity)/100;
-  ctx.fillStyle=rgbStart;
-  ctx.fillRect(20,20,100,75);
-  ctx.strokeRect(20,20,100,75);
-
-  // draw with the ending color using a increasing opacity
-  ctx.globalAlpha=(opacity)/100;
-  ctx.fillStyle=rgbEnd;
-  ctx.fillRect(20,20,100,75);
-  ctx.strokeRect(20,20,100,75);
-
-  // clean up, reset globalAlpha to it's default of 1.00
-  ctx.globalAlpha=1.00;
-
-  // return if all steps have been played
-  if(++opacityStep>=opacitySteps){return;}
-
-  // otherwise request another frame
-  requestAnimationFrame(animate);
-}
