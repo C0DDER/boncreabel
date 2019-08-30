@@ -83,10 +83,7 @@ header hr {
 
 .mainSlide {
   font-family: 'Exo2', sans-serif;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-content: space-around;
+  position: relative;
 }
 
 .mainSlide p {
@@ -266,4 +263,12 @@ header hr {
   overflow-x: auto;
   height: 500px;
   max-width: 100%;
+}
+
+canvas {
+  background-image: url(../img/MountCookChangingOfTheGuard.jpg);
+}
+.textWrapper {
+  position: absolute;
+  pointer-events : none;
 }
