@@ -174,23 +174,22 @@ header hr {
   margin-top: 0;
 }
 
-.portfolioWrapper:-webkit-scrollbar-track
-{
+.portfolioWrapper:-webkit-scrollbar-track {
   height: 2px;
   background-color: #F5F5F5;
-}
-.portfolioWrapper::-webkit-scrollbar
-{
-	width: 6px;
-  background-color: #F5F5F5;
-}
-.portfolioWrapper::-webkit-scrollbar-thumb
-{
-  height: 2px;
-	background-color: #000000;
 }
 
-.servicesWrapper  {
+.portfolioWrapper::-webkit-scrollbar {
+  width: 6px;
+  background-color: #F5F5F5;
+}
+
+.portfolioWrapper::-webkit-scrollbar-thumb {
+  height: 2px;
+  background-color: #000000;
+}
+
+.servicesWrapper {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
@@ -213,6 +212,7 @@ header hr {
   font-size: 36px;
   color: #E2F27D;
 }
+
 .service span {
   font-size: 24px;
   color: #fff;
@@ -268,13 +268,29 @@ header hr {
 canvas {
   background-image: url(../img/MountCookChangingOfTheGuard.jpg);
 }
+
 .textWrapper {
   position: absolute;
-  pointer-events : none;
+  pointer-events: none;
 }
 
-.telegramWrapper, .emailWrapper {
+.telegramWrapper,
+.emailWrapper {
   display: flex;
+  align-items: center;
+}
+
+.contactLinksWrapper svg {
+  margin-right: 20px;
+}
+
+.contactLinksWrapper p {
+  color: #FFFFFF;
+}
+
+.contactLinksWrapper a {
+  color: #E2F27D;
+  text-decoration: none;
 }
 
 .copyright {
@@ -282,13 +298,146 @@ canvas {
   color: white;
   max-width: 417px;
 }
+
 .copyright span {
   color: #E2F27D;
 }
 
 .contactLinksWrapper h2 {
+  margin-top: 0;
   font-size: 70px;
   font-family: 'Exo2', sans-serif;
   color: #FFFFFF;
   max-width: 750px;
+}
+
+.contactsWrapper {
+  display: flex;
+}
+
+.group {
+  position: relative;
+  margin-bottom: 45px;
+}
+
+.group input, .group textarea {
+  font-size: 18px;
+  padding: 10px 10px 10px 5px;
+  display: block;
+  width: 500px;
+  border: none;
+  background-color: #6F787A;
+  border-bottom: 1px solid #fff;
+}
+
+.group input:focus, .group textarea:focus {
+  outline: none;
+}
+
+.group label {
+  color: #fff;
+  font-family: 'Exo2', sans-serif;
+  font-size: 24px;
+  position: absolute;
+  pointer-events: none;
+  left: 5px;
+  top: 10px;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.group input:focus~label,
+.group input:valid~label,
+.group textarea:focus~label,
+.group textarea:valid~label {
+  top: -20px;
+  font-size: 14px;
+  color: #E2F27D;
+}
+
+.bar {
+  position: relative;
+  display: block;
+  width: 515px;
+}
+
+.bar:before,
+.bar:after {
+  content: '';
+  height: 2px;
+  width: 0;
+  bottom: 1px;
+  position: absolute;
+  background: #E2F27D;
+  transition: 0.2s ease all;
+  -moz-transition: 0.2s ease all;
+  -webkit-transition: 0.2s ease all;
+}
+
+.bar:before {
+  left: 50%;
+}
+
+.bar:after {
+  right: 50%;
+}
+
+.group input:focus~.bar:before,
+.group input:focus~.bar:after,
+.group textarea:focus~.bar:before,
+.group textarea:focus~.bar:after
+ {
+  width: 50%;
+}
+
+.highlight {
+  position: absolute;
+  height: 60%;
+  width: 100px;
+  top: 25%;
+  left: 0;
+  pointer-events: none;
+  opacity: 0.5;
+}
+
+/* active state */
+.group input:focus~.highlight, .group textarea:focus~.highlight {
+  -webkit-animation: inputHighlighter 0.3s ease;
+  -moz-animation: inputHighlighter 0.3s ease;
+  animation: inputHighlighter 0.3s ease;
+}
+
+/* ANIMATIONS ================ */
+@-webkit-keyframes inputHighlighter {
+  from {
+    background: #E2F27D;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+@-moz-keyframes inputHighlighter {
+  from {
+    background: #E2F27D;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
+}
+
+@keyframes inputHighlighter {
+  from {
+    background: #E2F27D;
+  }
+
+  to {
+    width: 0;
+    background: transparent;
+  }
 }
