@@ -120,12 +120,15 @@ const handleGesure = () => {
         let bgId = parseInt(bg.id);
         if (touchEndY < touchStartX) {
                 if (bgId < 5) {
+                        console.log('up')
                         let nextBg = bgId + 1;
                         bgClass(nextBg, bgId);
                         bg.id = nextBg;
                 }
         }
         if (touchEndY > touchStartX) {
+                console.log("down");
+                
                 if (bgId > 0) {
                         let nextBg = bgId - 1;
                         bgClass(nextBg, bgId);
@@ -220,3 +223,17 @@ listCount.forEach(el => {
                 current.id = parseInt(el.classList[0][6]);
         })
 });
+
+const input = document.querySelectorAll('.input2')
+
+input.forEach(el => {
+    el.addEventListener('blur', () => {
+            console.log(el.value);
+            
+        if (el.value != '') {
+            el.classList.add('has-val')
+        } else {
+            el.classList.remove('has-val')
+        }
+    })
+})

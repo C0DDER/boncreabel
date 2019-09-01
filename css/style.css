@@ -2,13 +2,15 @@
 
 body {
   margin: 0;
+  overscroll-behavior: noneж
 }
 
 h1,
 h2,
 p,
 span,
-ul {
+ul,
+label {
   font-family: 'Exo 2', sans-serif;
 }
 
@@ -324,7 +326,8 @@ canvas {
   cursor: pointer;
 }
 
-.group input, .group textarea {
+.group input,
+.group textarea {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
   display: block;
@@ -334,7 +337,8 @@ canvas {
   border-bottom: 1px solid #fff;
 }
 
-.group input:focus, .group textarea:focus {
+.group input:focus,
+.group textarea:focus {
   outline: none;
 }
 
@@ -390,8 +394,7 @@ canvas {
 .group input:focus~.bar:before,
 .group input:focus~.bar:after,
 .group textarea:focus~.bar:before,
-.group textarea:focus~.bar:after
- {
+.group textarea:focus~.bar:after {
   width: 50%;
 }
 
@@ -405,8 +408,8 @@ canvas {
   opacity: 0.5;
 }
 
-/* active state */
-.group input:focus~.highlight, .group textarea:focus~.highlight {
+.group input:focus~.highlight,
+.group textarea:focus~.highlight {
   -webkit-animation: inputHighlighter 0.3s ease;
   -moz-animation: inputHighlighter 0.3s ease;
   animation: inputHighlighter 0.3s ease;
@@ -444,4 +447,195 @@ canvas {
     width: 0;
     background: transparent;
   }
+}
+
+form {
+  width: 500px;
+}
+
+.has-val.input2+.focus-input2::after {
+  top: -13px;
+}
+
+.has-val.input2+.focus-input2::before {
+  width: 100%;
+}
+
+textarea, 
+input {
+  background-color: #6F787A;
+  border-bottom: 1px solid #fff;
+  outline: 0;
+  border: none;
+  resize: none
+}
+
+input:focus,
+textarea:focus {
+  border-color: transparent !important
+}
+
+textarea:focus:-moz-placeholder,
+textarea:focus:-ms-input-placeholder,
+textarea:focus::-moz-placeholder,
+input:focus::-webkit-input-placeholder,
+input:focus:-moz-placeholder,
+input:focus::-moz-placeholder,
+input:focus:-ms-input-placeholder,
+textarea:focus::-webkit-input-placeholder {
+  color: transparent
+}
+
+textarea::-moz-placeholder,
+textarea:-moz-placeholder,
+textarea:-ms-input-placeholder,
+input::-webkit-input-placeholder,
+input:-moz-placeholder,
+input::-moz-placeholder,
+input:-ms-input-placeholder,
+textarea::-webkit-input-placeholder {
+  color: #999
+}
+
+.wrap-input2 {
+  width: 100%;
+  position: relative;
+  border-bottom: 2px solid #6F787A;
+  margin-bottom: 37px
+}
+
+.input2 {
+  display: block;
+  width: 100%;
+  font-family: 'Exo2', sans-serif;
+  font-size: 15px;
+  color: #fff;
+  line-height: 1.2
+}
+
+.focus-input2 {
+  position: absolute;
+  display: block;
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  border-bottom: 2px solid #fff;
+  pointer-events: none
+}
+
+.focus-input2::before {
+  content: "";
+  display: block;
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  -webkit-transition: all .4s;
+  -o-transition: all .4s;
+  -moz-transition: all .4s;
+  transition: all .4s;
+  background: rgb(0, 0, 0);
+}
+
+.focus-input2::after {
+  content: attr(data-placeholder);
+  display: block;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  font-family: 'Exo2', sans-serif;
+  font-size: 13px;
+  color: #fff;
+  line-height: 1.2;
+  -webkit-transition: all .4s;
+  -o-transition: all .4s;
+  -moz-transition: all .4s;
+  transition: all .4s
+}
+
+input.input2 {
+  height: 45px
+}
+
+input.input2+.focus-input2::after {
+  top: 16px;
+  left: 0
+}
+
+textarea.input2 {
+  min-height: 115px;
+  padding-top: 13px;
+  padding-bottom: 13px
+}
+
+textarea.input2+.focus-input2::after {
+  top: 16px;
+  left: 0
+}
+
+.input2:focus+.focus-input2::after {
+  top: -13px
+}
+
+.input2:focus+.focus-input2::before {
+  width: 100%
+}
+
+.validate-input {
+  position: relative
+}
+
+.inputfile {
+	width: 0.1px;
+	height: 0.1px;
+	opacity: 0;
+	overflow: hidden;
+	position: absolute;
+	z-index: -1;
+}
+
+.inputfile + label {
+  font-size: 24px;
+  color: white;
+  display: inline-block;
+}
+.inputfile:focus + label,
+.inputfile + label:hover {
+  color: #E2F27D;
+}
+
+.inputfile + label {
+	cursor: pointer; /* "hand" cursor */
+}
+
+.inputfile:focus + label {
+	outline: -webkit-focus-ring-color auto 5px;
+}
+
+
+.inputfile + label * {
+	pointer-events: none;
+}
+
+.buttonsWrapper {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.submitForm {
+  background: rgba(0, 0, 0, 0);
+  border: 1px solid #FFF;
+  width: 230px;
+  font-size: 24px;
+  height: 45px;
+  color: #FFF;
+}
+
+.submitForm:hover {
+  cursor: pointer;
 }

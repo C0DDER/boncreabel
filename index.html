@@ -191,31 +191,28 @@
                                         </div>
                                         <div class="formWrapper">
                                                 <form>
-                                                        <div class="group">      
-                                                                <input type="text" required>
-                                                                <span class="highlight"></span>
-                                                                <span class="bar"></span>
-                                                                <label>Представьтесь, пожалуйста</label>
+                                                        <div class="wrap-input2 validate-input" data-validate="Name is required">
+                                                                <input class="input2" type="text" name="name">
+                                                                <span class="focus-input2" data-placeholder="Представьтесь, пожалуйста"></span>
                                                         </div>
-                                                        <div class="group">      
-                                                                <input type="text" required>
-                                                                <span class="highlight"></span>
-                                                                <span class="bar"></span>
-                                                                <label>Как с Вами связаться?</label>
+                                                        <div class="wrap-input2 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                                                                <input class="input2" type="text" name="contact">
+                                                                <span class="focus-input2" data-placeholder="Как с Вами связаться?"></span>
                                                         </div>
-                                                        <div class="group">      
-                                                                <input type="text" required>
-                                                                <span class="highlight"></span>
-                                                                <span class="bar"></span>
-                                                                <label>E-mail</label>
+                                                        <div class="wrap-input2 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
+                                                                <input class="input2" type="text" name="email">
+                                                                <span class="focus-input2" data-placeholder="E-mail"></span>
                                                         </div>
-                                                        <div class="group">      
-                                                                <textarea></textarea>
-                                                                <span class="highlight"></span>
-                                                                <span class="bar"></span>
-                                                                <label>Расскажите немного о вашем проекте</label>
+                
+                                                        <div class="wrap-input2 validate-input" data-validate = "Message is required">
+                                                                <textarea class="input2" name="message"></textarea>
+                                                                <span class="focus-input2" data-placeholder="Расскажите немного о вашем проекте"></span>
                                                         </div>
-
+                                                        <div class="buttonsWrapper">
+                                                                <button class="submitForm">Отправить</button>
+                                                        <input type="file" name="file" id="file" class="inputfile" />
+                                                        <label for="file">+ Прикрепить файл</label>
+                                                        </div>
                                                 </form>
                                         </div>
                                 </div>
