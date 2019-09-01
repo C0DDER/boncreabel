@@ -72,7 +72,7 @@ let slideData = {
 };
 
 const bgClass = (bgId, current) => {
-
+        console.log(bgId, current)
         isAnimating = true;
         let {
                 bg_class,
@@ -82,6 +82,8 @@ const bgClass = (bgId, current) => {
         } = slideData[bgId];
         let curSlide = document.querySelector(slideData[current].className)
         let nextSldie = document.querySelector(className);
+        curSlide.classList.remove('activeSlide')
+        nextSldie.classList.add('activeSlide')
         fadeOut(curSlide)
         setTimeout(() => {
                 fadeIn(nextSldie)
@@ -207,3 +209,14 @@ const slideChanger = slider => {
 
 slideChanger(portfolio);
 slideChanger(blog)
+
+const listCount = document.querySelectorAll('.slides_counter li');
+
+listCount.forEach(el => {
+        el.addEventListener('click', () => {
+                if (el.classList[1] != undefined) return;
+                let current = document.querySelector('.fullpage')
+                bgClass(parseInt(el.classList[0][6]), parseInt(current.id))
+                current.id = parseInt(el.classList[0][6]);
+        })
+});

@@ -320,6 +320,10 @@ canvas {
   margin-bottom: 45px;
 }
 
+.slides_counter li:hover {
+  cursor: pointer;
+}
+
 .group input, .group textarea {
   font-size: 18px;
   padding: 10px 10px 10px 5px;
