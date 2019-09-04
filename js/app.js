@@ -105,37 +105,46 @@ const bgClass = (bgId, current) => {
 
 let isAnimating = false;
 
-window.addEventListener('touchstart', function (e) {
-        touchStartX = e.changedTouches[0].screenX;
-        touchStartY = e.changedTouches[0].screenY;
-}, false);
+document.addEventListener('touchstart', handleTouchStart, false);        
+document.addEventListener('touchmove', handleTouchMove, false);
+var xDown = null;                                                        
+var yDown = null;  
 
-window.addEventListener('touchend', (e) => {
-        touchEndX = e.changedTouches[0].screenX;
-        touchEndY = e.changedTouches[0].screenY;
-        handleGesure();
-})
+function handleTouchStart(evt) {                                         
+    xDown = evt.touches[0].clientX;                                      
+    yDown = evt.touches[0].clientY;                                      
+}; 
 
-const handleGesure = () => {
-        let bgId = parseInt(bg.id);
-        if (touchEndY < touchStartX) {
-                if (bgId < 5) {
-                        console.log('up')
-                        let nextBg = bgId + 1;
-                        bgClass(nextBg, bgId);
-                        bg.id = nextBg;
-                }
+function handleTouchMove(evt) {
+    if ( ! xDown || ! yDown ) {
+        return;
+    }
+    let bgId = parseInt(bg.id);                                    
+    var yUp = evt.touches[0].clientY;
+    var yDiff = yDown - yUp;
+
+
+        if ( yDiff > 0 ) {
+        /* up swipe */ 
+        if (bgId < 5) {
+                console.log('up')
+                let nextBg = bgId + 1;
+                bgClass(nextBg, bgId);
+                bg.id = nextBg;
         }
-        if (touchEndY > touchStartX) {
-                console.log("down");
-                
-                if (bgId > 0) {
-                        let nextBg = bgId - 1;
-                        bgClass(nextBg, bgId);
-                        bg.id = nextBg;
-                }
+        } else { 
+        /* down swipe */
+        if (bgId > 0) {
+                let nextBg = bgId - 1;
+                bgClass(nextBg, bgId);
+                bg.id = nextBg;
         }
-}
+        }      
+        
+    /* reset values */
+    xDown = null;
+    yDown = null;                                             
+};
 
 // let portfolioWrapper = document.querySelector(".portfolioWrapper");
 // portfolioWrapper.mouseIsOver = false;
