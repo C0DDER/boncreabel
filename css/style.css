@@ -32,28 +32,64 @@ main {
 
 .fullpage {
   display: flex;
-  height: 100vh;
+  height: calc(100vh - 108px);
+  padding-top: 108px;
   width: 100vw;
   align-items: center;
   transition: background 1000ms linear;
+  justify-content: space-between;
 }
 
 header {
   position: absolute;
-  display: flex;
-  justify-content: space-around;
-  align-items: baseline;
   z-index: 1;
-  width: 100%;
-  height: 108px;
+  width: calc(100% - 148px);
+  height: 96px;
   transition: color 1000ms linear;
   color: white;
+  padding: 0 74px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.progressBar {
+  width: 100%;
+  height: 2px;
+  border-radius: 2px;
+  background-color: #FFF;
+  margin: 0 46px;
+  display: none;
+  -webkit-transition: all 1s linear;
 }
 
-header hr {
-  margin: 0;
-  max-width: 990px;
-  height: 2px;
+header h1 {
+  float: left;
+  margin-left: 100px;
+}
+
+.left, .right {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.left {
+  width: 100%;
+  justify-content: flex-start;
+}
+
+.right {
+  justify-content: space-between;
+}
+
+.menu {
+  float: left;
+  min-width: 36px;
+  min-height: 36px;
+}
+
+.menu path {
+  transition: fill 1000ms linear;
 }
 
 .slides_counter {
@@ -70,8 +106,19 @@ header hr {
   color: rgba(255, 255, 255, 0.2);
 }
 
+.slide_content {
+  width: calc(100% - 224px - 178px);
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .slideName {
-  width: 150px;
+  min-width: 265px;
+  color: #E2F27D;
+  font-size: 32px;
+  white-space: nowrap;
 }
 
 .slides_counter li {
@@ -86,6 +133,15 @@ header hr {
 .mainSlide {
   font-family: 'Exo2', sans-serif;
   position: relative;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+canvas {
+  height: 500px;
+  width: 500px;
 }
 
 .mainSlide p {
@@ -198,6 +254,7 @@ header hr {
   align-content: space-around;
   max-width: 1070px;
   height: 500px;
+  margin: 0 auto;
 }
 
 .service {
@@ -269,6 +326,8 @@ header hr {
 
 canvas {
   background-image: url(../img/MountCookChangingOfTheGuard.jpg);
+  background-position: center;
+  background-size: cover;
 }
 
 .textWrapper {
@@ -638,4 +697,105 @@ textarea.input2+.focus-input2::after {
 
 .submitForm:hover {
   cursor: pointer;
+}
+
+.mediaNetworks {
+  height: 100%;
+  width: 178px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.mediaNetworks svg {
+  margin: 15px 0;
+}
+
+/* HEIGHT ADAPTIVE */
+
+
+@media screen and (max-height: 611px) {
+  canvas {
+    display: none;
+  }
+}
+
+/* WIDTH ADAPTIVE */
+
+@media screen and (max-width: 1260px) {
+  .service {
+    width: 300px;
+  }
+  .service p {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 1100px) {
+  .service {
+    width: 250px;
+    height: 100px;
+  }
+  .service p {
+    font-size: 24px;
+  }
+}
+
+@media screen and (max-width: 970px) {
+  .servicesWrapper {
+    flex-direction: column;
+  }
+}
+
+@media screen and (max-width: 820px) {
+  .progressBar, .slideName {
+    display: none !important;
+  }
+  h1 {
+    margin: 0 auto !important;
+  }
+  .lang {
+    text-align: center;
+    min-width: 36px;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .mediaNetworks {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+  }
+  .slides_counter {
+    position: absolute;
+    clip: rect(0 0 0 0);
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    overflow: hidden;
+  }
+  .slide_content {
+    width: calc(100% - 30px);
+    padding: 0 15px;
+  }
+}
+
+@media screen and (max-width: 540px) {
+  canvas {
+    display: none;
+  }
+  .mainSlide h2 {
+    font-size: 53px;
+  }
+}
+
+@media screen and (max-width: 450px) { 
+  header {
+    width: calc(100% - 30px);
+    padding: 0 15px;
+  }
 }

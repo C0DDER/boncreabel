@@ -1,11 +1,13 @@
-var touchStartX = 0;
-var touchStartX = 0;
-var touchEndX = 0;
-var touchEndY = 0;
+let isAnimating         = false;
 
-const bg = document.querySelector('.fullpage');
-const portfolio = document.querySelector('.portfolioWrapper');
-const blog = document.querySelector('.blogWrapper')
+let xDown = null;
+let yDown = null;
+
+
+
+const bg                = document.querySelector('.fullpage');
+const portfolio         = document.querySelector('.portfolioWrapper');
+const blog              = document.querySelector('.blogWrapper')
 
 const fadeOut = el => {
         el.style.opacity = 1;
@@ -21,7 +23,7 @@ const fadeOut = el => {
 
 const fadeIn = (el, display) => {
         el.style.opacity = 0;
-        el.style.display = display || "block";
+        el.style.display = display || "flex";
 
         (function fade() {
                 var val = parseFloat(el.style.opacity);
@@ -63,16 +65,15 @@ let slideData = {
                 headColor: 'white',
                 className: '.blog'
         },
-        5 : {
-                bg_class : 'lightGray',
-                slideName : 'Контакты',
-                headColor : 'black',
-                className : '.contacts'
+        5: {
+                bg_class: 'lightGray',
+                slideName: 'Контакты',
+                headColor: 'black',
+                className: '.contacts'
         }
 };
 
 const bgClass = (bgId, current) => {
-        console.log(bgId, current)
         isAnimating = true;
         let {
                 bg_class,
@@ -82,8 +83,14 @@ const bgClass = (bgId, current) => {
         } = slideData[bgId];
         let curSlide = document.querySelector(slideData[current].className)
         let nextSldie = document.querySelector(className);
+        if (className == '.mainSlide') {
+                fadeOut(document.querySelector('.progressBar'))
+        } else {
+                fadeIn(document.querySelector('.progressBar'))
+        }
         curSlide.classList.remove('activeSlide')
         nextSldie.classList.add('activeSlide')
+        
         fadeOut(curSlide)
         setTimeout(() => {
                 fadeIn(nextSldie)
@@ -94,6 +101,9 @@ const bgClass = (bgId, current) => {
         }, 1300);
 
         document.querySelector('header').style.color = headColor;
+        document.querySelectorAll('.menu path').forEach(el => {
+                el.style.fill = headColor;
+        })
         document.querySelector('.slideName').innerHTML = slideName;
 
         document.querySelector('.slide_' + current).classList.remove('active_slide');
@@ -103,57 +113,43 @@ const bgClass = (bgId, current) => {
         bg.classList.add(bg_class);
 }
 
-let isAnimating = false;
-
-document.addEventListener('touchstart', handleTouchStart, false);        
-document.addEventListener('touchmove', handleTouchMove, false);
-var xDown = null;                                                        
-var yDown = null;  
-
-function handleTouchStart(evt) {                                         
-    xDown = evt.touches[0].clientX;                                      
-    yDown = evt.touches[0].clientY;                                      
-}; 
-
-function handleTouchMove(evt) {
-    if ( ! xDown || ! yDown ) {
-        return;
-    }
-    let bgId = parseInt(bg.id);                                    
-    var yUp = evt.touches[0].clientY;
-    var yDiff = yDown - yUp;
-
-
-        if ( yDiff > 0 ) {
-        /* up swipe */ 
-        if (bgId < 5) {
-                console.log('up')
-                let nextBg = bgId + 1;
-                bgClass(nextBg, bgId);
-                bg.id = nextBg;
-        }
-        } else { 
-        /* down swipe */
-        if (bgId > 0) {
-                let nextBg = bgId - 1;
-                bgClass(nextBg, bgId);
-                bg.id = nextBg;
-        }
-        }      
-        
-    /* reset values */
-    xDown = null;
-    yDown = null;                                             
+const handleTouchStart = evt => {
+        xDown = evt.touches[0].clientX;
+        yDown = evt.touches[0].clientY;
 };
 
-// let portfolioWrapper = document.querySelector(".portfolioWrapper");
-// portfolioWrapper.mouseIsOver = false;
-// portfolioWrapper.onmouseover = () => {
-//         portfolioWrapper.mouseIsOver = true;
-// };
-// portfolioWrapper.onmouseout = () =>  {
-//         portfolioWrapper.mouseIsOver = false;
-// };
+const handleTouchMove = evt => {
+        if (!xDown || !yDown) return;
+        if (isAnimating) return;
+        let bgId = parseInt(bg.id);
+        let xUp = evt.touches[0].clientX;
+        let yUp = evt.touches[0].clientY;
+        let xDiff = xDown - xUp;
+        let yDiff = yDown - yUp;
+
+        if (Math.abs(xDiff) < Math.abs(yDiff)) {
+                if (yDiff > 0) {
+                        if (bgId < 5) {
+                                let nextBg = bgId + 1;
+                                bgClass(nextBg, bgId);
+                                bg.id = nextBg;
+                        }
+                } else {
+                        if (bgId > 0) {
+                                let nextBg = bgId - 1;
+                                bgClass(nextBg, bgId);
+                                bg.id = nextBg;
+                        }
+                }
+        }
+        xDown = null;
+        yDown = null;
+};
+
+document.addEventListener('touchstart', handleTouchStart, false);
+document.addEventListener('touchmove', handleTouchMove, false);
+
+
 document.querySelector('.fullpage').addEventListener("wheel", event => {
         const delta = Math.sign(event.deltaY);
         let bgId = parseInt(bg.id);
@@ -178,16 +174,16 @@ let aboutUs = document.querySelectorAll('.headings li');
 
 aboutUs.forEach(el => {
         el.addEventListener('click', () => {
-                console.log(el.classList[0])
-                let active = document.querySelector("#" + document.querySelector('.active_description').id)
-                let next = document.querySelector("#" + el.classList[0])
-                active.classList.remove('active_description')
-                next.classList.add('active_description')
-                console.log(active.id)
-                fadeOut(active)
+                let active = document.querySelector("#" + document.querySelector('.active_description').id);
+                let next = document.querySelector("#" + el.classList[0]);
+                active.classList.remove('active_description');
+                next.classList.add('active_description');
+                document.querySelector('.' + el.classList[0]).classList.add('active_heading')
+                document.querySelector('.' + active.id).classList.remove('active_heading')
+                fadeOut(active);
                 active.style.display = "none";
                 setTimeout(() => {
-                        fadeIn(next)
+                        fadeIn(next);
                 }, 500);
         })
 })
@@ -236,13 +232,20 @@ listCount.forEach(el => {
 const input = document.querySelectorAll('.input2')
 
 input.forEach(el => {
-    el.addEventListener('blur', () => {
-            console.log(el.value);
-            
-        if (el.value != '') {
-            el.classList.add('has-val')
-        } else {
-            el.classList.remove('has-val')
-        }
-    })
+        el.addEventListener('blur', () => {
+                if (el.value != '') {
+                        el.classList.add('has-val')
+                } else {
+                        el.classList.remove('has-val')
+                }
+        })
 })
+
+// let portfolioWrapper = document.querySelector(".portfolioWrapper");
+// portfolioWrapper.mouseIsOver = false;
+// portfolioWrapper.onmouseover = () => {
+//         portfolioWrapper.mouseIsOver = true;
+// };
+// portfolioWrapper.onmouseout = () =>  {
+//         portfolioWrapper.mouseIsOver = false;
+// };
