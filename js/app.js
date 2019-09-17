@@ -41,31 +41,31 @@ let slideData = {
                 headColor: 'white',
                 className: '.mainSlide'
         },
+        // 1: {
+        //         bg_class: 'lightGray',
+        //         slideName: 'Портфолио',
+        //         headColor: 'black',
+        //         className: '.portfolio'
+        // },
         1: {
-                bg_class: 'lightGray',
-                slideName: 'Портфолио',
-                headColor: 'black',
-                className: '.portfolio'
-        },
-        2: {
                 bg_class: 'gray',
                 slideName: 'Услуги',
                 headColor: 'white',
                 className: '.services'
         },
-        3: {
-                bg_class: 'lightGray',
-                slideName: 'О студии',
-                headColor: 'black',
-                className: '.aboutUs'
-        },
-        4: {
-                bg_class: "gray",
-                slideName: 'Блог',
-                headColor: 'white',
-                className: '.blog'
-        },
-        5: {
+        // 3: {
+        //         bg_class: 'lightGray',
+        //         slideName: 'О студии',
+        //         headColor: 'black',
+        //         className: '.aboutUs'
+        // },
+        // 4: {
+        //         bg_class: "gray",
+        //         slideName: 'Блог',
+        //         headColor: 'white',
+        //         className: '.blog'
+        // },
+        2: {
                 bg_class: 'lightGray',
                 slideName: 'Контакты',
                 headColor: 'black',
@@ -129,7 +129,7 @@ const handleTouchMove = evt => {
 
         if (Math.abs(xDiff) < Math.abs(yDiff)) {
                 if (yDiff > 0) {
-                        if (bgId < 5) {
+                        if (bgId < 3) {
                                 let nextBg = bgId + 1;
                                 bgClass(nextBg, bgId);
                                 bg.id = nextBg;
@@ -155,7 +155,7 @@ document.querySelector('.fullpage').addEventListener("wheel", event => {
         let bgId = parseInt(bg.id);
         if (isAnimating) return;
         if (delta == 1) {
-                if (bgId < 5) {
+                if (bgId < 3) {
                         let nextBg = bgId + 1;
                         bgClass(nextBg, bgId);
                         bg.id = nextBg;
@@ -222,7 +222,7 @@ const listCount = document.querySelectorAll('.slides_counter li');
 
 listCount.forEach(el => {
         el.addEventListener('click', () => {
-                if (el.classList[1] != undefined) return;
+                if (el.classList[1] != undefined || isAnimating) return;
                 let current = document.querySelector('.fullpage')
                 bgClass(parseInt(el.classList[0][6]), parseInt(current.id))
                 current.id = parseInt(el.classList[0][6]);
