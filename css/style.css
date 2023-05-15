@@ -200,26 +200,33 @@ canvas {
 .portfolio {
   max-width: 100%;
   overflow-x: auto;
-  height: 500px;
+  height: 100%;
 }
 
 .portfolioWrapper {
   display: flex;
-  overflow-x: auto;
-  height: 500px;
-  max-width: 100%;
+  width: 100%;
+  height: 100%;
+  flex-wrap: wrap;
 }
 
 .itemBox {
-  min-width: 600px;
-  margin: 0 20px;
-  max-height: calc(100% - 145px);
-  margin-bottom: 40px;
-  font-size: 35px;
+  height: 372px;
+  width: 372px;
+  font-size: 36px;
   color: white;
-  padding: 92px 10px 10px 40px;
   background-image: url('../img/4c8f7eddcd05c8762cd544eb82cb71f517d954c7bf6e7b985d76cf76db604e7e.png');
   background-size: cover;
+}
+
+.itemBox h2{
+  font-size: 36px;
+  color: #E2F27D;
+}
+
+.itemBox p {
+  font-size: 24px;
+  color: #FFF;
 }
 
 .portfolioWrapper {
